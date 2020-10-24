@@ -10,6 +10,7 @@
 define( 'CFAV_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 
 require_once( CFAV_PLUGIN_DIR . 'class.cfav-menu-walker.php' );
+require_once( CFAV_PLUGIN_DIR . 'class.cfav-settings.php' );
 
 // example of an action
 function cfav_action_example() { 
@@ -26,3 +27,7 @@ function cfav_css_body_class( $classes ) {
     return $classes;
 }
 add_filter( 'body_class', 'cfav_css_body_class' );
+
+if( is_admin() ) {
+    $settings_page = new CFavSettings();
+}
