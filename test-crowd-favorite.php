@@ -31,3 +31,17 @@ add_filter( 'body_class', 'cfav_css_body_class' );
 if( is_admin() ) {
     $settings_page = new CFavSettings();
 }
+
+function custom_sort_posts($query) {
+
+ if ( is_home() && $query->is_main_query() ) {
+ 
+    $query->set( 'orderby', 'title');
+    $query->set( 'order', 'DESC' );
+    $query->set( 'posts_per_page', '2');
+    return $query;
+ 
+ }
+ 
+}
+add_action( 'pre_get_posts', 'custom_sort_posts');
